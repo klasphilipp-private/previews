@@ -59,27 +59,57 @@ document.addEventListener('click', event => {
   if (event.target.closest('a[href="/#"]')) event.preventDefault();
 });
 
-// Instagram is contacted only after the visitor explicitly loads the feed.
-const loadInstagram = document.querySelector('#load-instagram');
-loadInstagram?.addEventListener('click', () => {
-  const feed = document.querySelector('#instagram-feed');
-  const frame = document.createElement('iframe');
-  frame.title = 'Instagram-Profil und Beiträge von dachdecker_gerke';
-  frame.src = 'https://www.instagram.com/dachdecker_gerke/embed/';
-  frame.className = 'instagram-embed';
-  frame.referrerPolicy = 'strict-origin-when-cross-origin';
-  frame.setAttribute('allowfullscreen', '');
-  frame.tabIndex = 0;
-  feed.replaceChildren(frame);
-  const note = document.createElement('p');
-  note.className = 'instagram-embed-note';
-  note.textContent = 'Falls Instagram hier durch Ihre Browser-Einstellungen blockiert wird, können Sie das Profil direkt öffnen.';
-  const fallback = document.createElement('a');
-  fallback.href = 'https://www.instagram.com/dachdecker_gerke/';
-  fallback.target = '_blank';
-  fallback.rel = 'noopener noreferrer';
-  fallback.className = 'textlink';
-  fallback.textContent = 'Auf Instagram ansehen ↗';
-  feed.append(note, fallback);
-  frame.focus();
+// A local gallery works without contacting Meta. Individual embeds load on request.
+const postDialog = document.querySelector('#instagram-dialog');
+const postContent = document.querySelector('#instagram-dialog-content');
+document.querySelectorAll('.instagram-card').forEach(card => {
+  card.addEventListener('click', () => {
+    postContent.replaceChildren();
+    const image = document.createElement('img');
+    image.src = card.dataset.postImage;
+    image.alt = card.dataset.postTitle;
+    image.className = 'instagram-dialog-image';
+    const details = document.createElement('div');
+    details.className = 'instagram-dialog-details';
+    const heading = document.createElement('h2');
+    heading.id = 'instagram-dialog-title';
+    heading.textContent = card.dataset.postTitle;
+    const date = document.createElement('p');
+    date.className = 'instagram-dialog-date';
+    date.textContent = '@dachdecker_gerke · ' + card.dataset.postDate;
+    const notice = document.createElement('p');
+    notice.className = 'consent-note';
+    notice.textContent = 'Beim Laden des Originals wird eine Verbindung zu Instagram hergestellt. Dabei werden Daten an Meta übertragen.';
+    const load = document.createElement('button');
+    load.type = 'button';
+    load.className = 'button';
+    load.textContent = 'Instagram-Beitrag laden ↗';
+    load.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.title = 'Instagram-Beitrag: ' + card.dataset.postTitle;
+      frame.src = card.dataset.instagramUrl + 'embed/';
+      frame.className = 'instagram-post-embed';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.setAttribute('allowfullscreen', '');
+      frame.tabIndex = 0;
+      image.remove();
+      notice.remove();
+      load.replaceWith(frame);
+      const fallback = document.createElement('a');
+      fallback.href = card.dataset.instagramUrl;
+      fallback.target = '_blank';
+      fallback.rel = 'noopener noreferrer';
+      fallback.className = 'textlink';
+      fallback.textContent = 'Falls der Beitrag nicht angezeigt wird: auf Instagram öffnen ↗';
+      details.append(fallback);
+      postDialog.classList.add('is-embedded');
+      frame.focus();
+    });
+    details.append(heading, date, notice, load);
+    postContent.append(image, details);
+    postDialog.showModal();
+  });
 });
+postDialog.querySelector('.instagram-dialog-close').addEventListener('click', () => postDialog.close());
+postDialog.addEventListener('click', event => { if (event.target === postDialog) postDialog.close(); });
+postDialog.addEventListener('close', () => { postContent.replaceChildren(); postDialog.classList.remove('is-embedded'); });
