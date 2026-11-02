@@ -55,3 +55,33 @@ nav.drawer-nav{display:flex;flex-direction:column;gap:0;width:100%;padding:0;bor
 .values-grid .value-modern strong{color:#69cdf5}.value-modern>span:last-child{margin-left:auto;color:#69cdf5;font-size:30px}
 @media(max-width:1050px){.values-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.values-grid strong{font-size:23px}.values-grid .value-family strong{font-size:35px}.values-heading{align-items:start;flex-direction:column;gap:15px}}
 @media(max-width:720px){.values{padding-top:45px;padding-bottom:45px}.values-heading h2{font-size:32px}.values-grid{gap:0 18px}.values-grid li{min-height:85px;gap:10px}.values-grid strong{font-size:18px}.values-grid .value-family strong{font-size:28px}.value-number{margin-top:22px;font-size:9px}}
+
+/* Refined hero and prominent values directly beneath the introduction. */
+.hero{display:block;min-height:0}
+.hero-copy{padding:65px 6%;max-width:1100px}
+.hero h1{font-size:clamp(52px,6.4vw,91px);line-height:1.06}
+.hero .intro{max-width:600px}.hero .actions{margin-top:28px}
+.values-compact{padding-top:35px;padding-bottom:35px}
+.values-compact .values-heading{align-items:center;flex-direction:row;flex-wrap:wrap;gap:15px 30px;margin-bottom:24px}
+.values-compact .values-heading .eyebrow{width:100%}
+.values-compact .values-heading h2{font-size:32px}
+.storm-cta{display:grid;grid-template-columns:1fr auto;gap:0 25px;background:#70cff4;color:#063455;padding:14px 20px;margin-left:auto;line-height:1.5;transition:background .2s}
+.storm-cta>span:first-child{grid-column:1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.storm-cta strong{grid-column:2;grid-row:1 / span 2;align-self:center;font-family:'Quicksand',sans-serif;font-size:17px;font-weight:700}
+.storm-cta>span:last-child{grid-column:1;font-size:15px;font-weight:500}
+.storm-cta:hover{background:#a5e4ff}
+.values-compact .values-grid li{min-height:80px}.values-compact .values-grid strong{font-size:clamp(17px,1.6vw,24px)}
+.values-compact .values-grid .value-family strong{font-size:clamp(24px,2.3vw,33px)}
+.portfolio-heading{font-family:'Quicksand',sans-serif;font-weight:500;font-size:21px;margin:38px 0 18px}.more-services{margin-top:0}
+.instagram-section{border-top:1px solid var(--line);margin-top:45px;padding-top:35px}
+.instagram-heading .eyebrow{margin-bottom:10px}.instagram-heading h3{margin:0 0 25px;font-size:25px}
+.instagram-feed{text-align:center;background:#fff;padding:30px;border:1px solid var(--line)}
+.instagram-consent{max-width:540px;margin:0 auto;padding:20px 0 30px}.instagram-symbol{font:64px/1 Arial,sans-serif;color:var(--blue)}
+.instagram-consent h4{font-family:'Raleway',sans-serif;font-weight:300;font-size:30px;margin:20px 0 15px}
+.instagram-consent p{font-size:15px;color:#5c6d77}.instagram-consent .consent-note{font-size:12px;margin:20px 0}.instagram-consent .button{margin-top:5px}
+.instagram-feed iframe.instagram-embed{display:block;width:100%;max-width:540px;height:740px;aspect-ratio:auto;border:0;margin:0 auto;background:white}
+.instagram-embed-note{font-size:12px;color:#5c6d77;max-width:540px;margin:20px auto 10px}.instagram-feed>.textlink{font-size:12px;display:inline-block}
+footer>.footer-bottom{display:flex;width:100%;margin:5px 0 0;padding-top:22px;border-top:1px solid var(--line);align-items:center;justify-content:space-between;gap:25px}
+.footer-bottom small{width:auto}.realisation{display:flex;align-items:center;gap:16px}.realisation>span{font-size:10px;color:#647480;white-space:nowrap}.realisation>img{width:155px;height:auto}
+@media(max-width:720px){.hero-copy{padding:40px 6% 45px}.hero h1{font-size:58px}.values-compact{padding:30px 6%}.values-compact .values-heading{gap:15px;align-items:start}.values-compact .values-heading h2{font-size:29px}.storm-cta{margin:4px 0 0;width:100%;padding:15px 18px}.values-compact .values-grid{gap:0 18px}.values-compact .values-grid li{min-height:72px}.values-compact .values-grid strong{font-size:18px}.values-compact .values-grid .value-family strong{font-size:27px}.portfolio-heading{font-size:20px;line-height:1.45}.instagram-feed{padding:20px 12px}.instagram-heading h3{font-size:21px;overflow-wrap:anywhere}.instagram-feed iframe.instagram-embed{height:690px}footer>.footer-bottom{align-items:start;flex-direction:column;gap:22px}.realisation>img{width:150px}}
+@media(max-width:390px){.hero h1{font-size:49px}.values-compact .values-grid strong{font-size:16px}.values-compact .values-grid .value-family strong{font-size:23px}.instagram-feed iframe.instagram-embed{height:640px}}

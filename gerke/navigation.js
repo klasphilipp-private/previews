@@ -58,3 +58,28 @@ menu.addEventListener('click', event => {
 document.addEventListener('click', event => {
   if (event.target.closest('a[href="/#"]')) event.preventDefault();
 });
+
+// Instagram is contacted only after the visitor explicitly loads the feed.
+const loadInstagram = document.querySelector('#load-instagram');
+loadInstagram?.addEventListener('click', () => {
+  const feed = document.querySelector('#instagram-feed');
+  const frame = document.createElement('iframe');
+  frame.title = 'Instagram-Profil und Beiträge von dachdecker_gerke';
+  frame.src = 'https://www.instagram.com/dachdecker_gerke/embed/';
+  frame.className = 'instagram-embed';
+  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.setAttribute('allowfullscreen', '');
+  frame.tabIndex = 0;
+  feed.replaceChildren(frame);
+  const note = document.createElement('p');
+  note.className = 'instagram-embed-note';
+  note.textContent = 'Falls Instagram hier durch Ihre Browser-Einstellungen blockiert wird, können Sie das Profil direkt öffnen.';
+  const fallback = document.createElement('a');
+  fallback.href = 'https://www.instagram.com/dachdecker_gerke/';
+  fallback.target = '_blank';
+  fallback.rel = 'noopener noreferrer';
+  fallback.className = 'textlink';
+  fallback.textContent = 'Auf Instagram ansehen ↗';
+  feed.append(note, fallback);
+  frame.focus();
+});
