@@ -83,7 +83,8 @@ document.querySelectorAll('.instagram-card').forEach(card => {
     const load = document.createElement('button');
     load.type = 'button';
     load.className = 'button';
-    load.textContent = 'Instagram-Beitrag laden ↗';
+    load.textContent = 'Instagram-Beitrag laden ';
+    load.append(createArrow());
     load.addEventListener('click', () => {
       const frame = document.createElement('iframe');
       frame.title = 'Instagram-Beitrag: ' + card.dataset.postTitle;
@@ -100,7 +101,8 @@ document.querySelectorAll('.instagram-card').forEach(card => {
       fallback.target = '_blank';
       fallback.rel = 'noopener noreferrer';
       fallback.className = 'textlink';
-      fallback.textContent = 'Falls der Beitrag nicht angezeigt wird: auf Instagram öffnen ↗';
+      fallback.textContent = 'Falls der Beitrag nicht angezeigt wird: auf Instagram öffnen ';
+      fallback.append(createArrow());
       details.append(fallback);
       postDialog.classList.add('is-embedded');
       frame.focus();
@@ -113,3 +115,17 @@ document.querySelectorAll('.instagram-card').forEach(card => {
 postDialog.querySelector('.instagram-dialog-close').addEventListener('click', () => postDialog.close());
 postDialog.addEventListener('click', event => { if (event.target === postDialog) postDialog.close(); });
 postDialog.addEventListener('close', () => { postContent.replaceChildren(); postDialog.classList.remove('is-embedded'); });
+
+// SVG keeps link arrows independent of platform emoji fonts.
+function createArrow() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', 'arrow-icon');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  const path = document.createElementNS(ns, 'path');
+  path.setAttribute('d', 'M5 19 19 5M5 5h14v14');
+  svg.append(path);
+  return svg;
+}
