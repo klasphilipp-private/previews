@@ -1,12 +1,10 @@
 # Website previews
 
-Static website previews prepared for GitHub Pages from the `main` branch, repository root.
+Static website previews published with GitHub Pages from the `main` branch, repository root.
 
-## One-time Pages activation
+## Publication
 
-The current GitHub integration can push source but cannot enable Pages (GitHub returns HTTP 403: `Resource not accessible by integration`). In https://github.com/klasphilipp-private/previews/settings/pages select **Deploy from a branch**, branch **main**, folder **/(root)**, then **Save**.
-
-The URL below is the expected preview URL; publication is pending this one-time setting.
+GitHub Pages is enabled for `main` / repository root. Verified on 2026-11-02: build successful and GERKE preview returned HTTP 200.
 
 - [GERKE](https://klasphilipp-private.github.io/previews/gerke/)
 
